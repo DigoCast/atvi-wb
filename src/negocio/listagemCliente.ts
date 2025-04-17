@@ -19,6 +19,8 @@ export default class ListagemCliente extends Listagem{
             console.log(`RG: ` + cliente.getRG.getValor)
             console.log(`Telefone: ` + cliente.getTelefone)
             console.log('Cadastrado em: ' + cliente.getDataCadastro)
+            console.log(`Quantidade de Produtos Consumidos: ${cliente.getQntProdConsumido}`)
+            console.log(`Quantidade de Servicos Consumidos: ${cliente.getQntServConsumido}`)
             console.log('\n---------------------------------\n')
         });
     }

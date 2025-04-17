@@ -55,6 +55,14 @@ class Cliente{
         return this.servicosConsumidos
     }
     
+    public get getQntProdConsumido(): number{
+        return this.produtosConsumidos.length
+    }
+
+    public get getQntServConsumido(): number{
+        return this.servicosConsumidos.length
+    }
+
     public consumirProduto(produto: Produto){
         this.produtosConsumidos.push(produto)
     }

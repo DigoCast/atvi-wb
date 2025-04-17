@@ -6,6 +6,7 @@ import AtualizacaoServico from "../negocio/atualizacaoServico"
 import CadastroCliente from "../negocio/cadastroCliente"
 import CadastroProduto from "../negocio/cadastroProduto"
 import CadastroServico from "../negocio/cadastroServico"
+import Consumo from "../negocio/consumo"
 import ExclusaoCliente from "../negocio/exclusaoCliente"
 import ExclusaoProduto from "../negocio/exclusaoProduto"
 import ExclusaoServico from "../negocio/exclusaoServico"
@@ -23,7 +24,7 @@ while(execucao){
     console.log('2 - Produtos')
     console.log('3 - Serviços')
     console.log('4 - Listagens')
-    console.log('4 - Consumo')
+    console.log('5 - Consumo')
     console.log('0 - Sair\n')
 
     let entrada = new Entrada()
@@ -137,6 +138,10 @@ while(execucao){
             console.log('4 - Listar todos os Serviços')
             console.log('5 - Voltar ao Menu\n')
 
+            break
+        case 5:
+            let consumo = new Consumo(empresa.getClientes, empresa.getProdutos, empresa.getServicos)
+            consumo.consumir()
             break
         case 0: 
             execucao = false
