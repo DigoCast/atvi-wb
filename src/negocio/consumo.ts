@@ -55,8 +55,8 @@ export default class Consumo{
                         for (let i = 0; i < qntConsumoServico; i++){
                             servicoConsumido.vendas ++
                             cliente.consumirServico(servicoConsumido)
-                            console.log(`Produto ${servicoConsumido.nome} adicionado ao cliente ${cliente.nome}`)
                         }
+                        console.log(`Produto ${servicoConsumido.nome} adicionado ao cliente ${cliente.nome}`)
                     }else{
                         console.log('Servico nao encontrado')
                     }

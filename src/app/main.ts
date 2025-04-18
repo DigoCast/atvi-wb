@@ -13,6 +13,7 @@ import ExclusaoServico from "../negocio/exclusaoServico"
 import ListagemCliente from "../negocio/listagemCliente"
 import ListagemProduto from "../negocio/listagemProduto"
 import ListagemServico from "../negocio/listagemServicos"
+import ListagensFuncionalidades from "../negocio/listagemFuncionalidade"
 
 console.log('==================Seja Bem-Vindo à World Beauty=====================')
 let empresa = new Empresa
@@ -25,6 +26,7 @@ while(execucao){
     console.log('3 - Serviços')
     console.log('4 - Listagens')
     console.log('5 - Consumo')
+    console.log('6 - Popular Dados')
     console.log('0 - Sair\n')
 
     let entrada = new Entrada()
@@ -37,7 +39,7 @@ while(execucao){
             console.log('2 - Atualizar')
             console.log('3 - Excluir')
             console.log('4 - Listar todos os Clientes')
-            console.log('5 - Voltar ao Menu\n')
+            console.log('0 - Voltar ao Menu\n')
             
             let opcaoCli = entrada.receberNumero('Escolha uma opção: ')
 
@@ -58,10 +60,10 @@ while(execucao){
                     let listagemCliente = new ListagemCliente(empresa.getClientes) 
                     listagemCliente.listar()
                     break
-                case 5:
+                case 0:
                     break
                 default:
-                    console.log(`Opção (${opcao}) não entendida :c`)
+                    console.log(`Opção (${opcaoCli}) não entendida :c`)
             }
             break
         case 2:
@@ -70,7 +72,7 @@ while(execucao){
             console.log('2 - Atualizar')
             console.log('3 - Excluir')
             console.log('4 - Listar todos os Produtos')
-            console.log('5 - Voltar ao Menu\n')
+            console.log('0 - Voltar ao Menu\n')
             
             let opcaoProd = entrada.receberNumero('Escolha uma opção: ')
 
@@ -91,10 +93,10 @@ while(execucao){
                     let listagemProduto = new ListagemProduto(empresa.getProdutos)
                     listagemProduto.listar()
                     break
-                case 5:
+                case 0:
                     break
                 default:
-                    console.log(`Opção (${opcao}) não entendida :c`)
+                    console.log(`Opção (${opcaoProd}) não entendida :c`)
             }
             break
         case 3:
@@ -103,7 +105,7 @@ while(execucao){
             console.log('2 - Atualizar')
             console.log('3 - Excluir')
             console.log('4 - Listar todos os Serviços')
-            console.log('5 - Voltar ao Menu\n')
+            console.log('0 - Voltar ao Menu\n')
 
             let opcaoServ = entrada.receberNumero('Escolha uma opção: ')
 
@@ -124,10 +126,10 @@ while(execucao){
                     let listagemServico = new ListagemServico(empresa.getServicos)
                     listagemServico.listar()
                     break
-                case 5: 
+                case 0: 
                     break
                 default:
-                    console.log(`Opção (${opcao}) não entendida :c`)    
+                    console.log(`Opção (${opcaoServ}) não entendida :c`)    
             }
             break
         case 4:
@@ -135,13 +137,47 @@ while(execucao){
             console.log('1 - Listagem dos 10 clientes que mais consumiram produtos ou serviços, em quantidade')
             console.log('2 - Listagem de todos os clientes por gênero')
             console.log('3 - Listagem geral dos serviços ou produtos mais consumidos')
-            console.log('4 - Listar todos os Serviços')
-            console.log('5 - Voltar ao Menu\n')
+            console.log('4 - Listagem dos serviços ou produtos mais consumidos por gênero')
+            console.log('5 - Listagem dos 10 clientes que menos consumiram produtos ou serviços')
+            console.log('6 - Listagem dos 5 clientes que mais consumiram em valor')
+            console.log('0 - Voltar ao Menu\n')
+
+            let opcaoListagem = entrada.receberNumero('Insira sua opção de listagem: ')
+            let listagensFuncionalidades = new ListagensFuncionalidades(empresa.getClientes, empresa.getProdutos, empresa.getServicos)
+
+            switch(opcaoListagem){
+                case 1:
+                    listagensFuncionalidades.listagem10ConsumoQnt()
+                    break
+                case 2:
+                    listagensFuncionalidades.listagemGenero()
+                    break
+                case 3:
+                    listagensFuncionalidades.listagemMaisConsumidos()
+                    break
+                case 4:
+                    listagensFuncionalidades.listagemConsumoGenero()
+                    break
+                case 5:
+                    listagensFuncionalidades.listagem10MenosConsumoQnt()
+                    break
+                case 6:
+                    listagensFuncionalidades.listagem5ConsumoValor()
+                    break
+                case 0:
+                    break
+                default:
+                    console.log(`Opção (${opcaoListagem}) não entendida :c`)  
+            }
 
             break
         case 5:
             let consumo = new Consumo(empresa.getClientes, empresa.getProdutos, empresa.getServicos)
             consumo.consumir()
+            break
+        case 6:
+            empresa.popular()
+            console.log('Dados de Cliente, Produto e Servicos adiconados com Sucesso!')
             break
         case 0: 
             execucao = false
